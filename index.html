@@ -1,271 +1,276 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DG CLOUD - Minecraft & VPS Hosting</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DG CLOUD — Minecraft & VPS</title>
+  <meta name="description" content="Modern Minecraft & VPS hosting with DDoS protection, instant setup, and 24/7 support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Outfit', sans-serif;
+    :root{
+      --bg:#0f0a0a; --card:#1a0e0e; --muted:#f3bfbf; --accent:#ff3b3b; --glass: rgba(255,255,255,0.05);
+      --glass-2: rgba(255,255,255,0.02);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Poppins', sans-serif; background:linear-gradient(180deg,#1a0000 0%, #0a0000 100%); color:#fff;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    .container{max-width:1200px;margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#ff3b3b,#ff7676);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+    .brand h1{font-size:20px;margin:0;color:#ff5b5b}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .3s}
+    nav a:hover{color:#fff}
+    .btn{background:linear-gradient(90deg,#ff3b3b,#ff7676);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer;transition:transform .3s}
+    .btn:hover{transform:scale(1.05)}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px;border-radius:16px;background:linear-gradient(180deg, rgba(255,59,59,0.08), transparent);box-shadow:0 6px 30px rgba(255,59,59,0.3);animation:fadeIn 1.5s ease}
+    .hero h2{font-size:36px;margin:0 0 12px;color:#fff}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;color:var(--accent);backdrop-filter:blur(4px)}
+
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .card{background:linear-gradient(180deg,var(--card),#2b0a0a);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);transition:transform .3s, box-shadow .3s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(255,59,59,0.3)}
+    .card h3{margin:0 0 8px;color:#fff}
+    .price{font-size:28px;font-weight:800;margin:8px 0;color:#ff7676}
+    .list{color:var(--muted);margin:12px 0;line-height:1.6}
+    .cta{margin-top:14px}
+
+    section{margin-top:30px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+    footer{margin-top:38px;padding:18px;border-top:1px solid var(--glass-2);display:flex;justify-content:space-between;gap:12px;align-items:center;color:#ffbcbc}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .plans{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr}
+      nav{display:none}
     }
 
-    body {
-      background: #0b0b0f;
-      color: #f5f5f5;
-      overflow-x: hidden;
-    }
+    .muted{color:var(--muted)}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,59,59,0.15);font-weight:700;color:#ff7676}
+    .small{font-size:13px}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:inherit}
+    .kpi{display:flex;gap:12px}
+    .kpi > div{background:var(--glass);padding:12px;border-radius:10px;text-align:center;flex:1}
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 60px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      animation: fadeDown 1s ease forwards;
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
     }
-
-    @keyframes fadeDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      animation: logoFade 1.5s ease forwards;
-      transition: filter 0.3s ease;
-    }
-
-    .logo img:hover {
-      filter: drop-shadow(0 0 10px #ff3b3b);
-    }
-
-    @keyframes logoFade {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .logo span {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #ff3b3b, #ff8a00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav a {
-      margin: 0 20px;
-      text-decoration: none;
-      color: #ccc;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ff3b3b;
-    }
-
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      background: radial-gradient(circle at top, #1b1b22, #0b0b0f);
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 20px;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 20px #ff3b3b);
-      animation: glow 3s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px #ff3b3b); }
-      to { filter: drop-shadow(0 0 20px #ff8a00); }
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      background: linear-gradient(90deg, #ff3b3b, #ff8a00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      max-width: 600px;
-      color: #bbb;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
-
-    .hero button {
-      background: linear-gradient(90deg, #ff3b3b, #ff8a00);
-      border: none;
-      padding: 14px 36px;
-      color: white;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .hero button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff3b3b;
-    }
-
-    .plans {
-      padding: 100px 40px;
-      background: #121216;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      text-align: center;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .plan {
-      background: #1c1c22;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(255, 59, 59, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .plan:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(255, 59, 59, 0.3);
-    }
-
-    .plan h2 {
-      color: #ff3b3b;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    .plan p {
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    .plan .price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #ff8a00;
-      margin-bottom: 20px;
-    }
-
-    .plan button {
-      background: linear-gradient(90deg, #ff3b3b, #ff8a00);
-      color: #fff;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .plan button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff3b3b;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #888;
-      background: #0b0b0f;
-    }
-
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="dg cloud 2.png" alt="DG CLOUD Logo">
-      <span>DG CLOUD</span>
-    </div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#minecraft">Minecraft Hosting</a>
-      <a href="#vps">VPS Hosting</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">DG</div>
+        <div>
+          <h1>DG CLOUD</h1>
+          <div class="small muted">Minecraft & VPS • DDoS protected • 24/7</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#plans">Plans</a>
+        <a href="#features">Features</a>
+        <a href="#vps">VPS</a>
+        <a href="#contact">Contact</a>
+        <button class="btn" onclick="openSignUp()">Get Started</button>
+      </nav>
+    </header>
 
-  <section class="hero" id="home">
-    <img src="dg cloud 2.png" alt="DG CLOUD Logo Hero">
-    <h1>Powerful Hosting by DG CLOUD</h1>
-    <p>Reliable Minecraft and VPS hosting with blazing speed, full DDoS protection, and 24/7 uptime — built for creators and gamers.</p>
-    <button>Get Started</button>
-  </section>
+    <main>
+      <section class="hero" aria-label="hero">
+        <div>
+          <div class="badge">Instant setup • 40ms latency nodes</div>
+          <h2>Reliable Minecraft & VPS hosting, built for performance.</h2>
+          <p class="muted">From pocket-friendly Minecraft plans to dedicated VPS instances — scale with ease, protect with enterprise-grade DDoS mitigation, and manage everything from a beautiful control panel.</p>
 
-  <section class="plans" id="minecraft">
-    <div class="plan">
-      <h2>Starter Plan</h2>
-      <p>Perfect for small Minecraft servers.</p>
-      <div class="price">$3.99/mo</div>
-      <button>Order Now</button>
-    </div>
-    <div class="plan">
-      <h2>Pro Plan</h2>
-      <p>For medium to large communities.</p>
-      <div class="price">$9.99/mo</div>
-      <button>Order Now</button>
-    </div>
-    <div class="plan">
-      <h2>VPS Hosting</h2>
-      <p>Powerful virtual private servers for any project.</p>
-      <div class="price">$14.99/mo</div>
-      <button>Order Now</button>
-    </div>
-  </section>
+          <div class="features" style="margin-top:18px">
+            <div class="chip">1-Click Mods</div>
+            <div class="chip">Automated Backups</div>
+            <div class="chip">Global Nodes</div>
+            <div class="chip">99.99% Uptime SLA</div>
+          </div>
 
-  <footer>
-    © 2025 DG CLOUD — Reliable Minecraft & VPS Hosting
-  </footer>
+          <div style="margin-top:22px">
+            <button class="btn" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">View Plans</button>
+            <button class="btn" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#ff7676;margin-left:10px" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Sales</button>
+          </div>
+
+          <div class="kpi" style="margin-top:20px">
+            <div><div style="font-weight:800;font-size:18px">86k+</div><div class="small muted">Active Servers</div></div>
+            <div><div style="font-weight:800;font-size:18px">99.99%</div><div class="small muted">Uptime</div></div>
+            <div><div style="font-weight:800;font-size:18px">24/7</div><div class="small muted">Support</div></div>
+          </div>
+        </div>
+
+        <aside class="card" style="height:100%">
+          <h3 style="margin-top:0">Quick server setup</h3>
+          <p class="muted small">Create a server in seconds — choose version, RAM, and plugins.</p>
+
+          <div style="margin-top:14px">
+            <label class="small muted">Server type</label>
+            <select id="serverType">
+              <option value="paper">Paper (Recommended)</option>
+              <option value="spigot">Spigot</option>
+              <option value="vanilla">Vanilla</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <div style="flex:1"><label class="small muted">RAM</label><select id="ram"><option>1 GB</option><option>2 GB</option><option>4 GB</option><option>8 GB</option></select></div>
+            <div style="flex:1"><label class="small muted">Slots</label><select id="slots"><option>10</option><option>20</option><option>50</option><option>100</option></select></div>
+          </div>
+          <div style="margin-top:12px">
+            <button class="btn" style="width:100%" onclick="createDemo()">Create Demo Server</button>
+          </div>
+          <div id="demoMsg" class="small muted" style="margin-top:10px;display:none">Demo server created — IP: <span id="demoIp">play.demo.dgcloud</span></div>
+        </aside>
+      </section>
+
+      <section id="plans">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <h2 style="margin:0;color:#fff">Popular plans</h2>
+          <div class="small muted">Billing: <strong id="billingToggle">Monthly</strong> <label style="margin-left:10px"><input type="checkbox" id="toggleBilling" onchange="toggleBilling(this)" /> Yearly (save 15%)</label></div>
+        </div>
+
+        <div class="plans" aria-label="plans">
+          <div class="card">
+            <h3>MC Starter</h3>
+            <div class="price" data-month="4.99" data-year="50">$4.99<span class="small muted">/mo</span></div>
+            <div class="list">
+              1 GB RAM<br />Up to 10 players<br />1-Click installs
+            </div>
+            <div class="cta"><button class="btn" onclick="purchase('MC Starter')">Choose</button></div>
+          </div>
+
+          <div class="card" style="border:2px solid rgba(255,59,59,0.3)">
+            <h3>MC Pro</h3>
+            <div class="price" data-month="12.99" data-year="132">$12.99<span class="small muted">/mo</span></div>
+            <div class="list">
+              4 GB RAM<br />Up to 50 players<br />Automated Backups
+            </div>
+            <div class="cta"><button class="btn" onclick="purchase('MC Pro')">Choose</button></div>
+          </div>
+
+          <div class="card" id="vps">
+            <h3>VPS Basic</h3>
+            <div class="price" data-month="9.99" data-year="108">$9.99<span class="small muted">/mo</span></div>
+            <div class="list">
+              2 vCPU • 4 GB RAM<br />50 GB NVMe<br />Root Access
+            </div>
+            <div class="cta"><button class="btn" onclick="purchase('VPS Basic')">Choose</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2 style="color:#fff">Why choose us?</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Gaming-optimized network</h3>
+            <p class="muted">Low-latency routes and routing tuned for game servers. We keep ping low so play stays smooth around the world.</p>
+          </div>
+          <div class="card">
+            <h3>Control panel & backups</h3>
+            <p class="muted">Beautiful control panel, one-click plugin installs, automatic scheduled backups and easy restores.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:18px">
+        <h2 style="color:#fff">VPS hosting</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Scalable VPS</h3>
+            <p class="muted">Choose CPU, memory, and NVMe storage. Full root access with optional managed services.</p>
+            <ul class="muted">
+              <li>Snapshots & backups</li>
+              <li>Private networking</li>
+              <li>SSH & console access</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Managed support</h3>
+            <p class="muted">We can handle server setup, security hardening, and automated updates for you.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 style="color:#fff">Contact sales</h2>
+        <div class="card">
+          <form id="contactForm" onsubmit="submitForm(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <input type="text" id="name" placeholder="Your name" required />
+              <input type="email" id="email" placeholder="Email" required />
+            </div>
+            <div style="margin-top:10px">
+              <select id="interest"><option>Looking for Minecraft hosting</option><option>VPS hosting</option><option>Managed services</option></select>
+            </div>
+            <div style="margin-top:10px">
+              <textarea id="message" rows="4" placeholder="Tell us what you need (optional)"></textarea>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <button class="btn" type="submit">Send message</button>
+              <div id="formMsg" class="small muted" style="display:none">Thanks — we'll reply within 24 hours.</div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div class="small muted">© <span id="year"></span> DG CLOUD. All rights reserved.</div>
+        <div class="small muted">Status • Terms • Privacy</div>
+      </footer>
+    </main>
+  </div>
 
   <script>
-    // Smooth scroll
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleBilling(checkbox){
+      const isYear = checkbox.checked;
+      document.getElementById('billingToggle').textContent = isYear ? 'Yearly (save 15%)' : 'Monthly';
+      document.querySelectorAll('.price').forEach(el => {
+        const month = parseFloat(el.dataset.month);
+        const year = parseFloat(el.dataset.year);
+        el.innerHTML = (isYear ? ('$' + year) : ('$' + month)) + '<span class="small muted">/mo</span>';
       });
-    });
+    }
+
+    function createDemo(){
+      const ip = 'play-' + Math.floor(Math.random()*9000+1000) + '.dgcloud.gg';
+      document.getElementById('demoIp').textContent = ip;
+      document.getElementById('demoMsg').style.display = 'block';
+    }
+
+    function purchase(plan){
+      alert('You selected: ' + plan + '\nWe will redirect you to checkout (demo).');
+    }
+
+    function submitForm(e){
+      e.preventDefault();
+      document.getElementById('formMsg').style.display = 'inline-block';
+      setTimeout(()=>{document.getElementById('formMsg').textContent = 'Message sent — our sales will contact you soon.'},800);
+    }
+
+    function openSignUp(){
+      window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      document.getElementById('name').focus();
+    }
   </script>
 </body>
 </html>
